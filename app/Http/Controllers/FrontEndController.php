@@ -1043,7 +1043,7 @@ class FrontEndController extends Controller
 
         $subDomain = $this->getSubDomain();
         if ($subDomain && $alias !== $subDomain) {
-            return redirect()->route('vendor', $subDomain);
+            return redirect()->route('restorant', $subDomain);
         }
         $restorant = Restorant::whereRaw('REPLACE(subdomain, "-", "") = ?', [str_replace('-', '', $alias)])->first();
 
