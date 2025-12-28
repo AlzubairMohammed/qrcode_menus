@@ -172,8 +172,15 @@
                                                 <div class="card">
                                                     <img class="card-img-top" src="{{ $item->logom }}" alt="...">
                                                     <div class="card-body">
-                                                        <h3 class="card-title text-primary text-uppercase">{{ $item->name }}</h3>
-                                                        <p class="card-text description mt-3">{{ $item->description }}</p>
+                                                        @php
+                                                            $languages = explode(",", config('settings.front_languages'));
+                                                        @endphp
+                                                        @foreach($languages as $key => $language)
+                                                            @if($key % 2 == 0)
+                                                                <h3 class="card-title text-primary text-uppercase"><small class="text-muted">{{ $languages[$key+1] }}:</small> {{ $item->getTranslation('name', $language) }}</h3>
+                                                                <p class="card-text description mt-3"><small class="text-muted">{{ $languages[$key+1] }}:</small> {{ $item->getTranslation('description', $language) }}</p>
+                                                            @endif
+                                                        @endforeach
 
                                                         <span class="badge badge-primary badge-pill">@money($item->price, config('settings.cashier_currency'),config('settings.do_convertion'))</span>
 
