@@ -57,6 +57,19 @@
           @yield('addiitional_button_2')
           @yield('addiitional_button_3')
           <ul class="navbar-nav navbar-nav-hover align-items-lg-center">
+            @php
+                if(!isset($availableLanguages)){
+                    $availableLanguagesENV = config('settings.front_languages');
+                    $exploded = explode(',', $availableLanguagesENV);
+                    $availableLanguages = [];
+                    for ($i = 0; $i < count($exploded); $i += 2) {
+                        $availableLanguages[$exploded[$i]] = $exploded[$i+1];
+                    }
+                }
+                if(!isset($locale)){
+                    $locale = app()->getLocale();
+                }
+            @endphp
             @if(isset($availableLanguages)&&count($availableLanguages)>1)
                 <li class="web-menu nav-item dropdown">
                     <a class="btn btn-neutral btn-icon web-menu" href="#">

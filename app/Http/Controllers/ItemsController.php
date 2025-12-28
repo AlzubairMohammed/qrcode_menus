@@ -143,8 +143,13 @@ class ItemsController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $item = new Items;
-        $item->name = strip_tags($request->item_name);
-        $item->description = strip_tags($request->item_description);
+        if(is_array($request->item_name)){
+            $item->name = $this->encodeItem($request->item_name);
+            $item->description = $this->encodeItem($request->item_description);
+        }else{
+            $item->name = strip_tags($request->item_name);
+            $item->description = strip_tags($request->item_description);
+        }
         $item->price = strip_tags($request->item_price);
         $item->category_id = strip_tags($request->category_id);
         $defVat = 0;
@@ -226,8 +231,13 @@ class ItemsController extends Controller
     public function update(Request $request, Items $item): RedirectResponse
     {
         $makeVariantsRecreate = false;
-        $item->name = strip_tags($request->item_name);
-        $item->description = strip_tags($request->item_description);
+        if(is_array($request->item_name)){
+            $item->name = $this->encodeItem($request->item_name);
+            $item->description = $this->encodeItem($request->item_description);
+        }else{
+            $item->name = strip_tags($request->item_name);
+            $item->description = strip_tags($request->item_description);
+        }
         $item->category_id = $request->category_id;
         if ($item->price != strip_tags($request->item_price)) {
             $makeVariantsRecreate = true;
@@ -419,5 +429,17 @@ class ItemsController extends Controller
         }
 
         return response()->json(['success' => true]);
+    }
+
+
+    public function encodeItem($data) {
+        if(is_array($data)){
+             $encoded = [];
+             foreach($data as $key=>$value){
+                 $encoded[$key]=strip_tags($value);
+             }
+             return $encoded;
+        }
+        return strip_tags($data);
     }
 }

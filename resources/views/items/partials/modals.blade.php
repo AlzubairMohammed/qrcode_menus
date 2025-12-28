@@ -112,21 +112,49 @@
                     <div class="card-body px-lg-5 py-lg-5">
                         <form role="form" method="post" action="{{ route('items.store') }}" enctype="multipart/form-data">
                             @csrf
-                            <div class="form-group{{ $errors->has('item_name') ? ' has-danger' : '' }}">
-                                <input class="form-control" name="item_name" id="item_name" placeholder="{{ __('Item name') }} ..." type="text" required>
-                                @if ($errors->has('item_name'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('item_name') }}</strong>
-                                    </span>
-                                @endif
+                            @php
+                                $languages = explode(",", config('settings.front_languages'));
+                            @endphp
+                            <div class="nav-wrapper">
+                                <ul class="nav nav-pills nav-fill flex-column flex-md-row" id="tabs-icons-text" role="tablist">
+                                    @foreach($languages as $key => $language)
+                                        @if($key % 2 == 0)
+                                            <li class="nav-item">
+                                                <a class="nav-link mb-sm-3 mb-md-0 {{ $key == 0 ? 'active' : '' }}" id="tabs-icons-text-{{ $language }}-tab" data-toggle="tab" href="#tabs-icons-text-{{ $language }}" role="tab" aria-controls="tabs-icons-text-{{ $language }}" aria-selected="true">{{ $languages[$key+1] }}</a>
+                                            </li>
+                                        @endif
+                                    @endforeach
+                                </ul>
                             </div>
-                            <div class="form-group{{ $errors->has('item_description') ? ' has-danger' : '' }}">
-                                <textarea class="form-control" id="item_description" name="item_description" rows="3" placeholder="{{ __('Item description') }} ..." required></textarea>
-                                @if ($errors->has('item_description'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('item_description') }}</strong>
-                                    </span>
-                                @endif
+                            <div class="card shadow">
+                                <div class="card-body">
+                                    <div class="tab-content" id="myTabContent">
+                                        @foreach($languages as $key => $language)
+                                            @if($key % 2 == 0)
+                                                <div class="tab-pane fade {{ $key == 0 ? 'show active' : '' }}" id="tabs-icons-text-{{ $language }}" role="tabpanel" aria-labelledby="tabs-icons-text-{{ $language }}-tab">
+                                                    <div class="form-group{{ $errors->has('item_name') ? ' has-danger' : '' }}">
+                                                        <label class="form-control-label" for="item_name">{{ __('Item Name') }} ({{ $languages[$key+1] }})</label>
+                                                        <input class="form-control" name="item_name[{{ $language }}]" id="item_name_{{ $language }}" placeholder="{{ __('Item name') }} ..." type="text" required>
+                                                        @if ($errors->has('item_name'))
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $errors->first('item_name') }}</strong>
+                                                            </span>
+                                                        @endif
+                                                    </div>
+                                                    <div class="form-group{{ $errors->has('item_description') ? ' has-danger' : '' }}">
+                                                        <label class="form-control-label" for="item_description">{{ __('Item Description') }} ({{ $languages[$key+1] }})</label>
+                                                        <textarea class="form-control" id="item_description_{{ $language }}" name="item_description[{{ $language }}]" rows="3" placeholder="{{ __('Item description') }} ..." required></textarea>
+                                                        @if ($errors->has('item_description'))
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $errors->first('item_description') }}</strong>
+                                                            </span>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                            @endif
+                                        @endforeach
+                                    </div>
+                                </div>
                             </div>
                             <div class="form-group{{ $errors->has('item_price') ? ' has-danger' : '' }}">
                                 <input class="form-control" name="item_price" id="item_price" placeholder="{{ __('Item Price') }} ..." type="number" step="any" required>
