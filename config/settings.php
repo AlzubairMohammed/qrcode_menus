@@ -100,7 +100,6 @@ return [
     'is_show_credentials' => env('SHOW_DEMO_CREDENTIALS', false),
     'chars_in_menu_list' => env('CHARS_IN_MENU_LIST', 40),
     'extended_license_download_code' => env('EXTENDED_LICENSE_DOWNLOAD_CODE', ''),
-    'enable_miltilanguage_menus' => env('ENABLE_MILTILANGUAGE_MENUS', false),
     'onesignal_app_id' => env('ONESIGNAL_APP_ID', ''),
     'twilio_account_sid' => env('TWILIO_ACCOUNT_SID', false),
     'send_sms_notifications' => env('SEND_SMS_NOTIFICATIONS', false),

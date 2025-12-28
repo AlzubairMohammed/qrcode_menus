@@ -145,6 +145,14 @@ class FrontEndController extends Controller
         return $restorants;
     }
 
+    public function langswitch()
+    {
+        $newLang = request()->has('lang') ? request()->input('lang') : config('settings.app_locale');
+        session(['applocale_change' => $newLang]);
+        App::setLocale($newLang);
+        return redirect()->back()->withCookie(cookie('lang', $newLang, 120));
+    }
+
     public function index()
     {
         $hasQuery = \Request::has('q') && strlen(\Request::input('q')) > 1;
