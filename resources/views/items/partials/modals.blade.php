@@ -14,14 +14,53 @@
                         <form role="form" method="post" action="{{ route('categories.store') }}">
                             @csrf
                             <input type="hidden" value="{{$restorant_id}}"  name="restaurant_id" />
-                            <div class="form-group{{ $errors->has('category_name') ? ' has-danger' : '' }}">
-                                <input class="form-control" name="category_name" id="category_name" placeholder="{{ __('Category name') }} ..." type="text" required>
-                                @if ($errors->has('category_name'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('category_name') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
+
+                            @if(config('settings.enable_miltilanguage_menus'))
+                                @php
+                                    $languages = explode(",", config('settings.front_languages'));
+                                @endphp
+                                <div class="nav-wrapper">
+                                    <ul class="nav nav-pills nav-fill flex-column flex-md-row" id="tabs-icons-text-cat" role="tablist">
+                                        @foreach($languages as $key => $language)
+                                            @if($key % 2 == 0)
+                                                <li class="nav-item">
+                                                    <a class="nav-link mb-sm-3 mb-md-0 {{ $key == 0 ? 'active' : '' }}" id="tabs-icons-text-{{ $language }}-cat-tab" data-toggle="tab" href="#tabs-icons-text-cat-{{ $language }}" role="tab" aria-controls="tabs-icons-text-cat-{{ $language }}" aria-selected="true">{{ $languages[$key+1] }}</a>
+                                                </li>
+                                            @endif
+                                        @endforeach
+                                    </ul>
+                                </div>
+                                <div class="card shadow">
+                                    <div class="card-body">
+                                        <div class="tab-content" id="myTabContentCat">
+                                            @foreach($languages as $key => $language)
+                                                @if($key % 2 == 0)
+                                                    <div class="tab-pane fade {{ $key == 0 ? 'show active' : '' }}" id="tabs-icons-text-cat-{{ $language }}" role="tabpanel" aria-labelledby="tabs-icons-text-cat-{{ $language }}-tab">
+                                                        <div class="form-group{{ $errors->has('category_name') ? ' has-danger' : '' }}">
+                                                            <input class="form-control" name="category_name[{{ $language }}]" id="category_name_{{ $language }}" placeholder="{{ __('Category name') }} ({{ $languages[$key+1] }}) ..." type="text" required>
+                                                            @if ($errors->has('category_name'))
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $errors->first('category_name') }}</strong>
+                                                                </span>
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                @endif
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
+                            @else
+                                <div class="form-group{{ $errors->has('category_name') ? ' has-danger' : '' }}">
+                                    <input class="form-control" name="category_name" id="category_name" placeholder="{{ __('Category name') }} ..." type="text" required>
+                                    @if ($errors->has('category_name'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('category_name') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            @endif
+
                             <div class="text-center">
                                 <button type="submit" class="btn btn-primary my-4">{{ __('Save') }}</button>
                             </div>
@@ -50,14 +89,53 @@
                             @csrf
                             @method('put')
                             <input name="cat_id" id="cat_id" type="hidden" required>
-                            <div class="form-group{{ $errors->has('category_name') ? ' has-danger' : '' }}">
-                                <input class="form-control" name="category_name" id="cat_name" placeholder="{{ __('Category name') }} ..." type="text" required>
-                                @if ($errors->has('category_name'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('category_name') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
+                            
+                            @if(config('settings.enable_miltilanguage_menus'))
+                                @php
+                                    $languages = explode(",", config('settings.front_languages'));
+                                @endphp
+                                <div class="nav-wrapper">
+                                    <ul class="nav nav-pills nav-fill flex-column flex-md-row" id="tabs-icons-text-edit-cat" role="tablist">
+                                        @foreach($languages as $key => $language)
+                                            @if($key % 2 == 0)
+                                                <li class="nav-item">
+                                                    <a class="nav-link mb-sm-3 mb-md-0 {{ $key == 0 ? 'active' : '' }}" id="tabs-icons-text-edit-cat-{{ $language }}-tab" data-toggle="tab" href="#tabs-icons-text-edit-cat-{{ $language }}" role="tab" aria-controls="tabs-icons-text-edit-cat-{{ $language }}" aria-selected="true">{{ $languages[$key+1] }}</a>
+                                                </li>
+                                            @endif
+                                        @endforeach
+                                    </ul>
+                                </div>
+                                <div class="card shadow">
+                                    <div class="card-body">
+                                        <div class="tab-content" id="myTabContentEditCat">
+                                            @foreach($languages as $key => $language)
+                                                @if($key % 2 == 0)
+                                                    <div class="tab-pane fade {{ $key == 0 ? 'show active' : '' }}" id="tabs-icons-text-edit-cat-{{ $language }}" role="tabpanel" aria-labelledby="tabs-icons-text-edit-cat-{{ $language }}-tab">
+                                                        <div class="form-group{{ $errors->has('category_name') ? ' has-danger' : '' }}">
+                                                            <input class="form-control category_name_edit" name="category_name[{{ $language }}]" id="cat_name_{{ $language }}" placeholder="{{ __('Category name') }} ({{ $languages[$key+1] }}) ..." type="text" required>
+                                                            @if ($errors->has('category_name'))
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $errors->first('category_name') }}</strong>
+                                                                </span>
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                @endif
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
+                            @else
+                                <div class="form-group{{ $errors->has('category_name') ? ' has-danger' : '' }}">
+                                    <input class="form-control" name="category_name" id="cat_name" placeholder="{{ __('Category name') }} ..." type="text" required>
+                                    @if ($errors->has('category_name'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('category_name') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            @endif
+
                             <div class="text-center">
                                 <button type="submit" class="btn btn-primary my-4">{{ __('Save') }}</button>
                             </div>

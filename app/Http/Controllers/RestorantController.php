@@ -376,13 +376,28 @@ class RestorantController extends Controller
     public function update(Request $request, $restaurantid): RedirectResponse
     {
         $restaurant = Restorant::findOrFail($restaurantid);
+
+    if (is_array($request->name)) {
+        $restaurant->name = $this->encodeItem($request->name);
+    } else {
         $restaurant->name = strip_tags($request->name);
-        $thereIsRestaurantAddressChange = $restaurant->address.'' != $request->address.'';
+    }
 
+    $thereIsRestaurantAddressChange = $restaurant->address.'' != $request->address.'';
+
+    if (is_array($request->address)) {
+        $restaurant->address = $this->encodeItem($request->address);
+    } else {
         $restaurant->address = strip_tags($request->address);
-        $restaurant->phone = strip_tags($request->phone);
+    }
 
+    $restaurant->phone = strip_tags($request->phone);
+
+    if (is_array($request->description)) {
+        $restaurant->description = $this->encodeItem($request->description);
+    } else {
         $restaurant->description = strip_tags($request->description);
+    }
         $restaurant->minimum = strip_tags($request->minimum);
 
         if ($request->has('fee')) {

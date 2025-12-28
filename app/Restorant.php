@@ -11,11 +11,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\OpeningHours\OpeningHours;
 use willvincent\Rateable\Rateable;
 
-class Restorant extends MyModel
+class Restorant extends \App\Models\TranslateAwareModel
 {
     use HasConfig;
     use Rateable;
     use SoftDeletes;
+
+    public $translatable = ['name', 'description', 'address'];
 
     protected $modelName = \App\Restorant::class;
 

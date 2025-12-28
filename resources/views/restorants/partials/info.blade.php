@@ -5,12 +5,49 @@
         <div class="row">
         <div class="col-md-6">
         <input type="hidden" id="rid" value="{{ $restorant->id }}"/>
-        @include('partials.fields',['fields'=>[
-            ['ftype'=>'input','name'=>"Restaurant Name",'id'=>"name",'placeholder'=>"Restaurant Name",'required'=>true,'value'=>$restorant->name],
-            ['ftype'=>'input','name'=>"Restaurant description",'id'=>"description",'placeholder'=>"Restaurant description",'required'=>true,'value'=>$restorant->description],
-            ['ftype'=>'input','name'=>"Restaurant address",'id'=>"address",'placeholder'=>"Restaurant address",'required'=>true,'value'=>$restorant->address],
-            ['ftype'=>'input','name'=>"Restaurant phone",'id'=>"phone",'placeholder'=>"Restaurant phone",'required'=>true,'value'=>$restorant->phone],
-        ]])
+        @if(config('settings.enable_miltilanguage_menus'))
+            @php
+                $languages = explode(",", config('settings.front_languages'));
+            @endphp
+            <div class="nav-wrapper">
+                <ul class="nav nav-pills nav-fill flex-column flex-md-row" id="tabs-icons-text-resto" role="tablist">
+                    @foreach($languages as $key => $language)
+                        @if($key % 2 == 0)
+                            <li class="nav-item">
+                                <a class="nav-link mb-sm-3 mb-md-0 {{ $key == 0 ? 'active' : '' }}" id="tabs-icons-text-{{ $language }}-resto-tab" data-toggle="tab" href="#tabs-icons-text-resto-{{ $language }}" role="tab" aria-controls="tabs-icons-text-resto-{{ $language }}" aria-selected="true">{{ $languages[$key+1] }}</a>
+                            </li>
+                        @endif
+                    @endforeach
+                </ul>
+            </div>
+            <div class="card shadow">
+                <div class="card-body">
+                    <div class="tab-content" id="myTabContentResto">
+                        @foreach($languages as $key => $language)
+                            @if($key % 2 == 0)
+                                <div class="tab-pane fade {{ $key == 0 ? 'show active' : '' }}" id="tabs-icons-text-resto-{{ $language }}" role="tabpanel" aria-labelledby="tabs-icons-text-resto-{{ $language }}-tab">
+                                    @include('partials.fields',['fields'=>[
+                                        ['ftype'=>'input','name'=>"Restaurant Name (".$languages[$key+1].")",'id'=>"name_".$language,'name_field'=>"name[".$language."]",'placeholder'=>"Restaurant Name",'required'=>true,'value'=>$restorant->getTranslation('name', $language)],
+                                        ['ftype'=>'input','name'=>"Restaurant description (".$languages[$key+1].")",'id'=>"description_".$language, 'name_field'=>"description[".$language."]",'placeholder'=>"Restaurant description",'required'=>true,'value'=>$restorant->getTranslation('description', $language)],
+                                        ['ftype'=>'input','name'=>"Restaurant address (".$languages[$key+1].")",'id'=>"address_".$language, 'name_field'=>"address[".$language."]",'placeholder'=>"Restaurant address",'required'=>true,'value'=>$restorant->getTranslation('address', $language)],
+                                    ]])
+                                </div>
+                            @endif
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+            @include('partials.fields',['fields'=>[
+                ['ftype'=>'input','name'=>"Restaurant phone",'id'=>"phone",'placeholder'=>"Restaurant phone",'required'=>true,'value'=>$restorant->phone],
+            ]])
+        @else
+            @include('partials.fields',['fields'=>[
+                ['ftype'=>'input','name'=>"Restaurant Name",'id'=>"name",'placeholder'=>"Restaurant Name",'required'=>true,'value'=>$restorant->name],
+                ['ftype'=>'input','name'=>"Restaurant description",'id'=>"description",'placeholder'=>"Restaurant description",'required'=>true,'value'=>$restorant->description],
+                ['ftype'=>'input','name'=>"Restaurant address",'id'=>"address",'placeholder'=>"Restaurant address",'required'=>true,'value'=>$restorant->address],
+                ['ftype'=>'input','name'=>"Restaurant phone",'id'=>"phone",'placeholder'=>"Restaurant phone",'required'=>true,'value'=>$restorant->phone],
+            ]])
+        @endif
         @if(config('settings.multi_city'))
             @include('partials.fields',['fields'=>[
                 ['ftype'=>'select','name'=>"Restaurant city",'id'=>"city_id",'data'=>$cities,'required'=>true,'value'=>$restorant->city_id],

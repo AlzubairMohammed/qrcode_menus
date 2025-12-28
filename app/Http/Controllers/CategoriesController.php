@@ -34,7 +34,11 @@ class CategoriesController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $category = new Categories;
-        $category->name = strip_tags($request->category_name);
+        if (is_array($request->category_name)) {
+            $category->name = $this->encodeItem($request->category_name);
+        } else {
+            $category->name = strip_tags($request->category_name);
+        }
         $category->company_id = $request->restaurant_id;
         $category->save();
 
@@ -73,10 +77,28 @@ class CategoriesController extends Controller
      */
     public function update(Request $request, Categories $category): RedirectResponse
     {
-        $category->name = $request->category_name;
+        if (is_array($request->category_name)) {
+            $category->name = $this->encodeItem($request->category_name);
+        } else {
+            $category->name = $request->category_name;
+        }
         $category->update();
 
         return redirect()->back()->withStatus(__('Category name successfully updated.'));
+    }
+
+    private function encodeItem($data)
+    {
+        if (is_array($data)) {
+            $encoded = [];
+            foreach ($data as $key => $value) {
+                $encoded[$key] = strip_tags($value);
+            }
+
+            return $encoded;
+        }
+
+        return strip_tags($data);
     }
 
     /**
