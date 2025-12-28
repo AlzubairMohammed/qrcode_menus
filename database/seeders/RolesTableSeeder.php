@@ -14,35 +14,33 @@ class RolesTableSeeder extends Seeder
      */
     public function run(): void
     {
-
         //Roles
-        $admin = Role::create(['name' => 'admin']);
-        $owner = Role::create(['name' => 'owner']);
-        $driver = Role::create(['name' => 'driver']);
-        $client = Role::create(['name' => 'client']);
-        $staff = Role::create(['name' => 'staff']);
+        $admin = Role::firstOrCreate(['name' => 'admin', 'guard_name' => 'web']);
+        $owner = Role::firstOrCreate(['name' => 'owner', 'guard_name' => 'web']);
+        $driver = Role::firstOrCreate(['name' => 'driver', 'guard_name' => 'web']);
+        $client = Role::firstOrCreate(['name' => 'client', 'guard_name' => 'web']);
+        $staff = Role::firstOrCreate(['name' => 'staff', 'guard_name' => 'web']);
 
         //Permissions
-        $admin->givePermissionTo(Permission::create(['name' => 'manage restorants']));
-        $admin->givePermissionTo(Permission::create(['name' => 'manage drivers']));
-        $admin->givePermissionTo(Permission::create(['name' => 'manage orders']));
-        $admin->givePermissionTo(Permission::create(['name' => 'edit settings']));
+        $admin->givePermissionTo(Permission::firstOrCreate(['name' => 'manage restorants', 'guard_name' => 'web']));
+        $admin->givePermissionTo(Permission::firstOrCreate(['name' => 'manage drivers', 'guard_name' => 'web']));
+        $admin->givePermissionTo(Permission::firstOrCreate(['name' => 'manage orders', 'guard_name' => 'web']));
+        $admin->givePermissionTo(Permission::firstOrCreate(['name' => 'edit settings', 'guard_name' => 'web']));
 
-        $owner->givePermissionTo(Permission::create(['name' => 'view orders']));
-        $owner->givePermissionTo(Permission::create(['name' => 'edit restorant']));
+        $owner->givePermissionTo(Permission::firstOrCreate(['name' => 'view orders', 'guard_name' => 'web']));
+        $owner->givePermissionTo(Permission::firstOrCreate(['name' => 'edit restorant', 'guard_name' => 'web']));
 
-        $driver->givePermissionTo(Permission::create(['name' => 'edit orders']));
+        $driver->givePermissionTo(Permission::firstOrCreate(['name' => 'edit orders', 'guard_name' => 'web']));
 
-        $backedn = Permission::create(['name' => 'access backedn']);
+        $backedn = Permission::firstOrCreate(['name' => 'access backedn', 'guard_name' => 'web']);
         $admin->givePermissionTo($backedn);
         $owner->givePermissionTo($backedn);
         $driver->givePermissionTo($backedn);
 
         //ADD ADMIN USER ROLE
-        DB::table('model_has_roles')->insert([
-            'role_id' => 1,
-            'model_type' => \App\User::class,
-            'model_id' => 1,
-        ]);
+        $user = \App\User::find(1);
+        if ($user && ! $user->hasRole('admin')) {
+            $user->assignRole('admin');
+        }
     }
 }
