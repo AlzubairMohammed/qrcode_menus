@@ -1,0 +1,726 @@
+<!--
+=========================================================
+* Argon Design System - v1.2.0
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/argon-design-system
+* Copyright 2020 Creative Tim (http://www.creative-tim.com)
+
+Coded by www.creative-tim.com
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="apple-touch-icon" sizes="76x76" href="http://127.0.0.1:8000/argonfront/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="http://127.0.0.1:8000/argonfront/img/favicon.png">
+    <meta name="csrf-token" content="C9abBN1kaGMyuxGwdCJZGvzKA1JNOfoRTHSSIyeY">
+    
+    <title>مطعم تجريبي</title>
+<meta property="og:image" itemprop="image" content="/default/restaurant_large.jpg">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="590">
+<meta property="og:image:height" content="400">
+<meta name="og:title" property="og:title" content="مطعم تجريبي">
+<meta name="description" content="وصف تجريبي">
+
+<style>
+    
+</style>
+
+
+
+    <meta property="og:image" content="/default/logo_qrzebra.png">
+    <title>QR Menu Maker</title>
+
+    <link rel="stylesheet" type="text/css" href="http://127.0.0.1:8000/vendor/mckenziearts/laravel-notify/dist/notify.css"/>
+    <!--     Fonts and icons     -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link href="http://127.0.0.1:8000/argonfront/css/font-awesome.css" rel="stylesheet" />
+    <link href="http://127.0.0.1:8000/argonfront/css/nucleo-svg.css" rel="stylesheet" />
+    <link href="http://127.0.0.1:8000/argonfront/css/nucleo-icons.css" rel="stylesheet">
+
+    <!-- CSS Files -->
+    <link href="http://127.0.0.1:8000/argonfront/css/argon-design-system.min.css?v=1.4.0" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link type="text/css" href="http://127.0.0.1:8000/custom/css/custom.css" rel="stylesheet">
+
+    <!-- Select2 -->
+    <link type="text/css" href="http://127.0.0.1:8000/custom/css/select2.min.css" rel="stylesheet">
+
+
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    
+      <!-- Web Application Manifest -->
+<link rel="manifest" href="http://127.0.0.1:8000/manifest.json">
+<!-- Chrome for Android theme color -->
+<meta name="theme-color" content="#000000">
+
+<!-- Add to homescreen for Chrome on Android -->
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="application-name" content="QR Menu Maker">
+<link rel="icon" sizes="256x256" href="android-chrome-256x256.png">
+
+<!-- Add to homescreen for Safari on iOS -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="QR Menu Maker">
+<link rel="apple-touch-icon" href="android-chrome-256x256.png">
+
+
+<link href="/images/icons/splash-750x1334.png" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+<link href="/images/icons/splash-1242x2208.png" media="(device-width: 621px) and (device-height: 1104px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" />
+<link href="/images/icons/splash-1125x2436.png" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" />
+<link href="/images/icons/splash-828x1792.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+<link href="/images/icons/splash-1242x2688.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" />
+<link href="/images/icons/splash-1536x2048.png" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+<link href="/images/icons/splash-1668x2224.png" media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+<link href="/images/icons/splash-1668x2388.png" media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+<link href="/images/icons/splash-2048x2732.png" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+
+<!-- Tile for Win8 -->
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="android-chrome-256x256.png">
+
+<script type="text/javascript">
+    // Initialize the service worker
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/serviceworker.js', {
+            scope: '.'
+        }).then(function (registration) {
+            // Registration was successful
+            
+        }, function (err) {
+            // registration failed :(
+            
+        });
+    }
+</script>  <!-- CSS Files -->
+     <link href="http://127.0.0.1:8000/css/rtl.css" rel="stylesheet" />
+ 
+ <link rel="stylesheet" href="http://127.0.0.1:8000/vendor/intltelinput/build/css/intlTelInput.css">
+<style type="text/css">
+    .iti__flag {background-image: url("/vendor/intltelinput/build/img/flags.png");}
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .iti__flag {background-image: url("/vendor/intltelinput/build/img/flags@2x.png");}
+}
+</style>
+
+<script src="http://127.0.0.1:8000/vendor/intltelinput/build/js/intlTelInput.js"></script>
+<script src="http://127.0.0.1:8000/vendor/intltelinput/build/js/utils.js"></script>
+<script>
+    var defCountry="US";
+    function initPhone(name){
+        var input = document.querySelector("input[name='"+name+"']");
+        if(input!=null){
+            var iti=window.intlTelInput(input, {
+              nationalMode:true,
+                hiddenInput: name,
+                //customContainer:"form-controls",
+                autoHideDialCode:true,
+                separateDialCode:true,
+                autoPlaceholder:"aggressive",
+                initialCountry: defCountry,
+                utilsScript: "/vendor/intltelinput/build/js/utils.js",
+            });
+
+
+        var reset = function() {
+		  input.classList.remove("error");
+          setTheHidden();
+		};
+
+        var setTheHidden =function(){
+            var theHidden=document.querySelector("input[type=hidden][name='"+name+"']");
+            theHidden.value = iti.getSelectedCountryData().dialCode+input.value;
+            console.log(theHidden.value);
+        }
+
+
+		input.addEventListener('change', reset);
+		input.addEventListener('keyup', reset);	 
+
+        input.addEventListener("countrychange", function() {
+            setTheHidden();
+        });
+
+        setTheHidden();
+
+        }
+    }
+    setTimeout(() => {
+            initPhone('whatsapp_phone');
+            initPhone('phone');
+            initPhone('phone_owner');
+            initPhone('phone_number');
+            //initPhone('phone_driver');
+            
+            
+        }, 3000);
+  
+</script>
+  
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+<!-- Custom CSS defined by admin -->
+  <link type="text/css" href="http://127.0.0.1:8000/byadmin/frontmenu.css" rel="stylesheet">
+
+
+</head>
+
+<body class="">
+        
+
+
+    <!-- Navbar -->
+            <nav id="navbar-main" class="navbar navbar-light navbar-expand-lg fixed-top">
+
+
+    <div class="container-fluid">
+                  <a class="navbar-brand mr-lg-5" id="topLightLogo" href="#">
+            <img class="theProjectLogo" src="/default/restaurant_wide.png">
+          </a>
+          <a class="navbar-brand mr-lg-5" id="topDarkLogo" style="display: none" href="#">
+            <img class="theProjectLogo" src="/default/restaurant_wide_dark.png">
+          </a>
+        
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar_global" aria-controls="navbar_global" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+
+        <div class="navbar-collapse collapse" id="navbar_global">
+          <div class="navbar-collapse-header">
+            <div class="row">
+                            <div class="col-6 collapse-brand">
+                <a href="#">
+                  <img src="/default/restaurant_wide_dark.png">
+                </a>
+              </div>
+                            <div class="col-6 collapse-close">
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar_global" aria-controls="navbar_global" aria-expanded="false" aria-label="Toggle navigation">
+                  <span></span>
+                  <span></span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <ul class="navbar-nav align-items-lg-center ml-lg-auto">
+                                                                <div class="itemsSearchHolder">
+        <select class="itemsSearch" id="itemsSearch" style="margin-right: 5px" placeholder="بحث">
+            <option></option>
+                                                                    <optgroup label="طعام" >
+                                                        <option value="341" >بيتزا</option>
+                                                    </optgroup>
+                                                 
+        </select>
+    </div>  
+                                      
+                                    
+                                      <li class="web-menu mr-1">
+                      <a  href="http://127.0.0.1:8000/register/visit/17" class="btn btn-neutral btn-icon btn-cart" style="cursor:pointer;">
+                            <span class="btn-inner--icon">
+                              <i class="fa fa-calendar-plus-o"></i>
+                            </span>
+                            <span class="nav-link-inner--text">سجل زيارة</span>
+                        </a>
+                    </li>
+                  
+                  
+                  
+                
+            
+
+                        <li class="mobile-menu">
+
+                            
+                              
+                                  
+
+                                      <a href="http://127.0.0.1:8000/register/visit/17" class="nav-link" style="cursor:pointer;">
+                        <i class="fa fa-calendar-plus-o"></i>
+                        <span class="nav-link-inner--text">سجل زيارة</span>
+                    </a>
+                  
+                                  
+                                
+              
+
+            </li>
+          </ul>
+        </div>
+
+
+      </div>
+
+    </nav>
+    
+    <!-- End Navbar -->
+    <div class="wrapper">
+         
+
+<div class="modal fade" id="productModal" z-index="9999" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-" role="document" id="modalDialogItem">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 id="modalTitle" class="modal-title" id="modal-title-new-item"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body p-0">
+                <div class="card shadow border-0">
+                    <div class="card-body px-lg-5 py-lg-5">
+                        <div class="row">
+                            <div class="col-sm col-md col-lg text-center" id="modalImgPart">
+                                <img id="modalImg" src="" width="295px" height="200px">
+                            </div>
+                            <div class="col-sm col-md col-lg col-lg" id="modalItemDetailsPart">
+                                <input id="modalID" type="hidden"></input>
+                                <span id="modalPrice" class="new-price"></span>
+                                <p id="modalDescription"></p>
+                                <div id="variants-area">
+                                    <label class="form-control-label">اختر خياراتك</label>
+                                    <div id="variants-area-inside">
+                                    </div>
+                                </div>
+                                <div id="exrtas-area">
+                                    <br />
+                                    <label id="theExtrasLabel" class="form-control-label" for="quantity">إضافات</label>
+                                    <div id="exrtas-area-inside">
+                                    </div>
+                                </div>
+                                                               <!-- Inform if closed -->
+                                                                <!-- End inform -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modal-import-restaurants" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
+    <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modal-title-new-item">استيراد المطاعم من CSV</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body p-0">
+                <div class="card bg-secondary shadow border-0">
+                    <div class="card-body px-lg-5 py-lg-5">
+                        <div class="col-md-10 offset-md-1">
+                        <form role="form" method="post" action="http://127.0.0.1:8000/import/restaurants" enctype="multipart/form-data">
+                            <input type="hidden" name="_token" value="C9abBN1kaGMyuxGwdCJZGvzKA1JNOfoRTHSSIyeY" autocomplete="off">                            <div class="form-group text-center">
+                                <label class="form-control-label" for="resto_excel">Import your file</label>
+                                <div class="text-center">
+                                    <input type="file" class="form-control form-control-file" name="resto_excel" accept=".csv, .ods, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" required>
+                                </div>
+                            </div>
+                            <input name="category_id" id="category_id" type="hidden" required>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary my-4">حفظ</button>
+                            </div>
+                        </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modal-restaurant-info" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
+    <div class="modal-dialog modal- modal-dialog-centered modal-lg" role="document" >
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 id="modalRestaurantTitle"  class="modal-title notranslate">مطعم تجريبي</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body p-0">
+                <div class="card">
+                    <div class="card-header bg-white text-center">
+                        <img class="rounded img-center" src="/default/restaurant_thumbnail.jpg" width="90px" height="90px"></img>
+                        <h4 class="heading mt-4">مطعم تجريبي &nbsp;</h4>
+                        <p class="description">وصف تجريبي</p>
+                                            </div>
+                    <div class="card-body">
+                        <div class="nav-wrapper">
+                            <ul class="nav nav-pills nav-fill flex-column flex-md-row" id="tabs-icons-text" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link mb-sm-3 mb-md-0 active" id="tabs-icons-text-1-tab" data-toggle="tab" href="#tabs-icons-text-1" role="tab" aria-controls="tabs-icons-text-1" aria-selected="true">حول</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-2-tab" data-toggle="tab" href="#tabs-icons-text-2" role="tab" aria-controls="tabs-icons-text-2" aria-selected="false">التقييمات</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="tabs-icons-text-1" role="tabpanel" aria-labelledby="tabs-icons-text-1-tab">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <h6 class="heading-small">الهاتف</h6>
+                                        <p class="heading-small text-muted">12345678</p>
+                                        <br/>
+                                        <h6 class="heading-small">العنوان</h6>
+                                        <p class="heading-small text-muted">عنوان تجريبي</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div id="map3" class="form-control form-control-alternative"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="tabs-icons-text-2" role="tabpanel" aria-labelledby="tabs-icons-text-2-tab">
+                                                                  <p>لا توجد مراجعات بعد.<p>
+                                                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+    <section class="section-profile-cover section-shaped grayscale-05 d-none d-md-none d-lg-block d-lx-block">
+      <!-- Circles background -->
+      <img class="bg-image" loading="lazy" src="/default/cover.jpg" style="width: 100%;">
+      <!-- SVG separator -->
+      <div class="separator separator-bottom separator-skew">
+        <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+          <polygon class="fill-white" points="2560 0 2560 100 0 100"></polygon>
+        </svg>
+      </div>
+    </section>
+
+    <section class="section pt-lg-0 mb--5 mt--9 d-none d-md-none d-lg-block d-lx-block">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="title white"  style="border-bottom: 1px solid #f2f2f2;" >
+                        <h1 class="display-3 text-white notranslate" data-toggle="modal" data-target="#modal-restaurant-info" style="cursor: pointer;">مطعم تجريبي</h1>
+                        
+                        <p class="display-4" style="margin-top: 120px">وصف تجريبي</p>
+                        <div class="row">
+        <div class="col-md-12">
+            <ul class="list-inline ">
+                                                                                            </ul>
+        </div>
+    </div>
+
+
+                        <p><i class="ni ni-watch-time"></i>   |   <i class="ni ni-pin-3"></i></i> <a target="_blank" href="https://www.google.com/maps/search/?api=1&query=%D8%B9%D9%86%D9%88%D8%A7%D9%86+%D8%AA%D8%AC%D8%B1%D9%8A%D8%A8%D9%8A"><span class="notranslate">عنوان تجريبي</span></a>  |   <i class="ni ni-mobile-button"></i> <a href="tel:12345678">12345678 </a> </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                                    </div>
+                            </div>
+        </div>
+
+    </section>
+    <section class="section section-lg d-md-block d-lg-none d-lx-none" style="padding-bottom: 0px">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                                    </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="title">
+                        <h1 class="display-3 text notranslate" data-toggle="modal" data-target="#modal-restaurant-info" style="cursor: pointer;">مطعم تجريبي</h1>
+                        <p class="display-4 text">وصف تجريبي</p>
+                        <div class="row">
+        <div class="col-md-12">
+            <ul class="list-inline ">
+                                                                                            </ul>
+        </div>
+    </div>
+
+                        <p><i class="ni ni-watch-time"></i>     <i class="ni ni-pin-3"></i></i> <a target="_blank" href="https://www.google.com/maps/search/?api=1&query=%D8%B9%D9%86%D9%88%D8%A7%D9%86+%D8%AA%D8%AC%D8%B1%D9%8A%D8%A8%D9%8A">عنوان تجريبي</a>  |   <i class="ni ni-mobile-button"></i> <a href="tel:12345678">12345678 </a> </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section pt-lg-0" id="restaurant-content" style="padding-top: 0px">
+        <input type="hidden" id="rid" value="17"/>
+        <div class="container container-restorant">
+
+            
+            
+                    <nav class="tabbable sticky" style="top: 64px;">
+                <ul class="nav nav-pills bg-white mb-2">
+                    <li class="nav-item nav-item-category ">
+                        <a class="nav-link  mb-sm-3 mb-md-0 active" data-toggle="tab" role="tab" href="">كل الفئات</a>
+                    </li>
+                                                                        <li class="nav-item nav-item-category" id="cat_طعام0">
+                                <a class="nav-link mb-sm-3 mb-md-0" data-toggle="tab" role="tab" id="nav_طعام0" href="#طعام0">طعام</a>
+                            </li>
+                                                            </ul>
+
+                
+            </nav>
+
+            
+            
+            
+
+
+                                                        <div id="طعام0" class="طعام0">
+                    <h1>طعام</h1><br />
+                </div>
+                                <div class="row طعام0">
+                                            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
+                            <div class="strip">
+                                                                
+                                                                    <div class="res_title"><b><a onClick="setCurrentItem(341)" href="javascript:void(0)">بيتزا</a></b></div>
+                                
+                                <div class="res_description">بيتزا بالجبن</div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="res_mimimum">
+                                                                                        €10.00                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="allergens" style="text-align: right;">
+                                                                                         
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                
+                           
+                            </div>
+                        </div>
+                                    </div>
+                                    <!-- Check if is installed -->
+            
+           
+            
+        </div>
+
+        
+    </section>
+    <div class="modal fade" id="modal-form" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
+        <div class="modal-dialog modal- modal-dialog-centered modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-body p-0">
+                    <div class="card bg-secondary shadow border-0">
+                        <div class="card-header bg-transparent pb-2">
+                            <h4 class="text-center mt-2 mb-3">استدعاء النادل</h4>
+                        </div>
+                        <div class="card-body px-lg-5 py-lg-5">
+                            <form role="form" method="post" action="http://127.0.0.1:8000/call/waiter">
+                                <input type="hidden" name="_token" value="C9abBN1kaGMyuxGwdCJZGvzKA1JNOfoRTHSSIyeY" autocomplete="off">                                                                    <div id="form-group-table_id" class="form-group    col-12 ">
+
+    
+    <label class="form-control-label">طاولة</label><br />
+
+    <select   class="form-control form-control-alternative    noselecttwo "  name="table_id" id="table_id">
+        <option disabled selected value> تحديد طاولة </option>
+            </select>
+
+
+        </div>
+                                                    
+                           
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-primary my-4">اتصل الآن</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div id="cartSideNav" class="sidenav-cart sidenav-cart-close notranslate">
+    <div class="offcanvas-menu-inner">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <div class="minicart-content">
+            <div class="minicart-heading">
+                <h4>عربة التسوق</h4>
+            </div>
+            <div class="searchable-container">
+                <div id="cartList">
+                    <div v-for="item in items" class="items col-xs-12 col-sm-12 col-md-12 col-lg-12 clearfix">
+                        <div class="info-block block-info clearfix" v-cloak>
+                            <div class="square-box pull-left">
+                                <img :src="item.attributes.image"  class="productImage" width="100" height="105" alt="">
+                            </div>
+                            <h6 class="product-item_title">{{ item.name }}</h6>
+                            <p class="product-item_quantity">{{ item.quantity }} x {{ item.attributes.friendly_price }}</p>
+                            <div class="row">
+                                <button type="button" v-on:click="decQuantity(item.id)" :value="item.id" class="btn btn-outline-primary btn-icon btn-sm page-link btn-cart-radius">
+                                    <span class="btn-inner--icon btn-cart-icon"><i class="fa fa-minus"></i></span>
+                                </button>
+                                <button type="button" v-on:click="incQuantity(item.id)" :value="item.id" class="btn btn-outline-primary btn-icon btn-sm page-link btn-cart-radius">
+                                    <span class="btn-inner--icon btn-cart-icon"><i class="fa fa-plus"></i></span>
+                                </button>
+                                <button type="button" v-on:click="remove(item.id)"  :value="item.id" class="btn btn-outline-primary btn-icon btn-sm page-link btn-cart-radius">
+                                    <span class="btn-inner--icon btn-cart-icon"><i class="fa fa-trash"></i></span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="totalPrices" v-cloak>
+                    <div  class="card card-stats mb-4 mb-xl-0">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    <span v-if="itemsCount==0">السلة فارغة!</span>
+                                    <span v-if="itemsCount"><strong>المجموع الفرعي:</strong></span>
+                                    <span v-if="itemsCount" class="ammount"><strong>{{ totalPriceFormat }}</strong></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br/>
+                    <div v-if="itemsCount" v-cloak>
+                        <a href="/cart-checkout" class="btn btn-primary text-white">الدفع</a>
+                    </div>
+                    <br/>
+                    <div v-if="itemsCount" v-cloak class="text-center mobile-menu">
+                        <a type="button" class="btn btn-default btn-block text-white btn-sm" style="text-transform:none" onclick="closeNav()">مواصلة التسوق</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+        <footer class="footer notranslate">
+    <div class="container">
+      <div class="row align-items-center justify-content-md-between">
+        <div class="col-md-6">
+          <div class="copyright">
+            &copy; 2025 <a href="" target="_blank">QR Menu Maker</a>.
+          </div>
+        </div>
+        <div class="col-md-6">
+          <ul id="footer-pages" class="nav nav-footer justify-content-end">
+            <li v-for="page in pages" class="nav-item" v-cloak>
+                <a :href="'/pages/' + page.id" class="nav-link">{{ page.title }}</a>
+            </li>
+
+                        <li class="nav-item">
+              <a  target="_blank" class="button nav-link nav-link-icon" href="http://127.0.0.1:8000/new/restaurant/register">سجل مطعمك</a>
+            </li>
+                    
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+            </div>
+
+    <!--   Core JS Files   -->
+    <script src="http://127.0.0.1:8000/argonfront/js/core/jquery.min.js" type="text/javascript"></script>
+    <script src="http://127.0.0.1:8000/argonfront/js/core/popper.min.js" type="text/javascript"></script>
+    <script src="http://127.0.0.1:8000/argonfront/js/core/bootstrap.min.js" type="text/javascript"></script>
+    <script src="http://127.0.0.1:8000/argonfront/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+
+    <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
+    <script src="http://127.0.0.1:8000/argonfront/js/plugins/bootstrap-switch.js"></script>
+
+    <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+    <script src="http://127.0.0.1:8000/argonfront/js/plugins/nouislider.min.js" type="text/javascript"></script>
+    <script src="http://127.0.0.1:8000/argonfront/js/plugins/moment.min.js"></script>
+
+    <script src="http://127.0.0.1:8000/argonfront/js/plugins/datetimepicker.js" type="text/javascript"></script>
+    <script src="http://127.0.0.1:8000/argonfront/js/plugins/bootstrap-datepicker.min.js"></script>
+
+    <!-- Control Center for Argon UI Kit: parallax effects, scripts for the example pages etc -->
+    <script src="http://127.0.0.1:8000/argonfront/js/argon-design-system.js?v=1.2.0" type="text/javascript"></script>
+
+
+   <!-- Import Vue -->
+   <script src="http://127.0.0.1:8000/vendor/vue/vue.js"></script>
+   <!-- Import AXIOS --->
+   <script src="http://127.0.0.1:8000/vendor/axios/axios.min.js"></script>
+
+    <!-- Add to Cart   -->
+    <script>
+        var LOCALE="ar";
+        var CASHIER_CURRENCY = "EUR";
+        var USER_ID = '';
+        var PUSHER_APP_KEY = "";
+        var PUSHER_APP_CLUSTER = "eu";
+    </script>
+    <script src="http://127.0.0.1:8000/custom/js/cartFunctions.js"></script>
+
+
+    <!-- Cart custom sidemenu -->
+    <script src="http://127.0.0.1:8000/custom/js/cartSideMenu.js"></script>
+
+    <!-- Notify JS -->
+    <script src="http://127.0.0.1:8000/custom/js/notify.min.js"></script>
+
+     <!-- SELECT2 -->
+     <script src="http://127.0.0.1:8000/custom/js/select2.js"></script>
+     <script src="http://127.0.0.1:8000/vendor/select2/select2.min.js"></script>
+
+    <!-- All in one -->
+    <script src="http://127.0.0.1:8000/custom/js/js.js?id=4.1.0"></script>
+
+
+
+
+     <!-- Google Map -->
+     <script async defer src="https://maps.googleapis.com/maps/api/js?libraries=geometry,drawing&key=&libraries=places&callback=js.initializeGoogle"></script>
+
+    
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+        <script>
+        var CASHIER_CURRENCY = "EUR";
+        var LOCALE="ar";
+        var IS_POS=false;
+        var TEMPLATE_USED="defaulttemplate";
+        var PID = "";
+    </script>
+    <script src="http://127.0.0.1:8000/custom/js/order.js"></script>
+    <script>
+   
+    items[341]={"name":"\u0628\u064a\u062a\u0632\u0627","id":341,"qty":100,"priceNotFormated":10,"price":"\u20ac10.00","image":"\/default\/restaurant_large.jpg","extras":[],"options":[],"variants":[],"has_variants":false,"description":"\u0628\u064a\u062a\u0632\u0627 \u0628\u0627\u0644\u062c\u0628\u0646"};    var categories = ["\u0637\u0639\u0627\u06450"];
+</script>   
+    
+    <script type="text/javascript" src="http://127.0.0.1:8000/vendor/mckenziearts/laravel-notify/js/notify.js"></script>
+    <!-- Custom JS defined by admin -->
+                
+    <script>
+        window.translations = ;
+    </script>
+
+</body>
+
+</html>
