@@ -31,6 +31,7 @@ return [
         ],
         'custom' => [],
         'splash' => [
+            '640x1136' => '/images/icons/splash-640x1136.png',
             '750x1334' => '/images/icons/splash-750x1334.png',
             '828x1792' => '/images/icons/splash-828x1792.png',
             '1125x2436' => '/images/icons/splash-1125x2436.png',
