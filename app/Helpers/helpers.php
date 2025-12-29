@@ -41,3 +41,55 @@ if (! function_exists('trans')) {
         return $message;
     }
 }
+
+if (! function_exists('safeFormatIntl')) {
+    /**
+     * Safely format a date using Intl or fallback to Carbon
+     *
+     * @param  mixed  $date
+     * @param  string  $pattern
+     * @param  string|null  $locale
+     * @param  string|null  $tz
+     * @return string
+     */
+    function safeFormatIntl($date, $pattern, $locale = null, $tz = null)
+    {
+        if (!$date) return "";
+        
+        $locale = $locale ?: config('app.locale');
+        $tz = $tz ?: config('app.timezone');
+
+        // Try to use IntlDateFormatter if the extension is loaded
+        // and it's not the polyfill for non-en locales
+        if (extension_loaded('intl')) {
+            try {
+                $formatter = new \IntlDateFormatter($locale, \IntlDateFormatter::SHORT, \IntlDateFormatter::SHORT);
+                $formatter->setPattern($pattern);
+                $formatter->setTimeZone($tz);
+                $formatted = $formatter->format($date);
+                if ($formatted !== false) {
+                    return $formatted;
+                }
+            } catch (\Exception $e) {
+                // Fallback to Carbon
+            }
+        }
+
+        // Fallback to Carbon
+        try {
+            $carbonDate = \Carbon\Carbon::parse($date);
+            if ($tz) {
+                $carbonDate->setTimezone($tz);
+            }
+            
+            // Map ICU pattern to PHP date format (best effort)
+            // E is day name, HH is hours, mm is minutes
+            // Our common patterns: "E HH:mm"
+            $phpPattern = str_replace(['eeee', 'eee', 'E', 'HH', 'mm'], ['l', 'D', 'D', 'H', 'i'], $pattern);
+            
+            return $carbonDate->locale($locale)->translatedFormat($phpPattern);
+        } catch (\Exception $e) {
+            return $date instanceof \DateTime ? $date->format('Y-m-d H:i') : (string)$date;
+        }
+    }
+}

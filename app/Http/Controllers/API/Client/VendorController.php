@@ -121,14 +121,11 @@ class VendorController extends Controller
         $businessHours = $restaurant->getBusinessHours();
         $now = new \DateTime('now');
 
-        $formatter = new \IntlDateFormatter(config('app.locale'), \IntlDateFormatter::SHORT, \IntlDateFormatter::SHORT);
-        $formatter->setPattern(config('settings.datetime_workinghours_display_format_new'));
-
         $params = [
             'restorant' => $restaurant,
             'timeSlots' => $timeSlotsForApp,
-            'openingTime' => $businessHours->isClosed() ? $formatter->format($businessHours->nextOpen($now)) : null,
-            'closingTime' => $businessHours->isOpen() ? $formatter->format($businessHours->nextClose($now)) : null,
+            'openingTime' => $businessHours->isClosed() ? safeFormatIntl($businessHours->nextOpen($now), config('settings.datetime_workinghours_display_format_new')) : null,
+            'closingTime' => $businessHours->isOpen() ? safeFormatIntl($businessHours->nextClose($now), config('settings.datetime_workinghours_display_format_new')) : null,
         ];
 
         if ($restaurant) {

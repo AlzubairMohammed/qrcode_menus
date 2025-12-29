@@ -1148,10 +1148,6 @@ class FrontEndController extends Controller
             $tz = $restorant->getConfig('time_zone', config('app.timezone'));
             $now = new \DateTime('now', new \DateTimeZone($tz));
 
-            $formatter = new \IntlDateFormatter(config('app.locale'), \IntlDateFormatter::SHORT, \IntlDateFormatter::SHORT);
-            $formatter->setPattern(config('settings.datetime_workinghours_display_format_new'));
-            $formatter->setTimeZone($tz);
-
             $viewFile = 'restorants.show';
             if ($menuTemplate != 'defaulttemplate') {
                 $viewFile = config('settings.front_end_template', 'defaulttemplate').'::show';
@@ -1167,8 +1163,8 @@ class FrontEndController extends Controller
             $openingTime = null;
             $closingTime = null;
             try {
-                $openingTime = $businessHours->isClosed() ? $formatter->format($businessHours->nextOpen($now)) : null;
-                $closingTime = $businessHours->isOpen() ? $formatter->format($businessHours->nextClose($now)) : null;
+                $openingTime = $businessHours->isClosed() ? safeFormatIntl($businessHours->nextOpen($now), config('settings.datetime_workinghours_display_format_new'), config('app.locale'), $tz) : null;
+                $closingTime = $businessHours->isOpen() ? safeFormatIntl($businessHours->nextClose($now), config('settings.datetime_workinghours_display_format_new'), config('app.locale'), $tz) : null;
             } catch (MaximumLimitExceeded $th) {
                 //throw $th;
             }

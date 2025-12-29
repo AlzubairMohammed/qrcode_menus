@@ -246,9 +246,6 @@ class CartController extends Controller
             $businessHours = $restaurant->getBusinessHours();
             $now = new \DateTime('now');
 
-            $formatter = new \IntlDateFormatter(config('app.locale'), \IntlDateFormatter::SHORT, \IntlDateFormatter::SHORT);
-            $formatter->setPattern(config('settings.datetime_workinghours_display_format_new'));
-
             //Table ID
             $tid = Cookie::get('tid') ? Cookie::get('tid') : null;
             if ($tid == '') {
@@ -273,8 +270,8 @@ class CartController extends Controller
                 'restorant' => $restaurant,
                 'timeSlots' => $timeSlots,
                 'doWeHaveOrderAfterHours' => $doWeHaveOrderAfterHours,
-                'openingTime' => $businessHours->isClosed() ? $formatter->format($businessHours->nextOpen($now)) : null,
-                'closingTime' => $businessHours->isOpen() ? $formatter->format($businessHours->nextClose($now)) : null,
+                'openingTime' => $businessHours->isClosed() ? safeFormatIntl($businessHours->nextOpen($now), config('settings.datetime_workinghours_display_format_new')) : null,
+                'closingTime' => $businessHours->isOpen() ? safeFormatIntl($businessHours->nextClose($now), config('settings.datetime_workinghours_display_format_new')) : null,
                 'addresses' => $addresses,
                 'fieldsToRender' => $fieldsToRender,
                 'extraPayments' => $extraPayments,
@@ -363,13 +360,8 @@ class CartController extends Controller
         $businessHours = $restorant->getBusinessHours();
         $now = new \DateTime('now');
 
-        $formatter = new \IntlDateFormatter(config('app.locale'), \IntlDateFormatter::SHORT, \IntlDateFormatter::SHORT);
-        $formatter->setPattern(config('settings.datetime_workinghours_display_format_new'));
-
-        return [
-            'restorant' => $restorant,
-            'openingTime' => $businessHours->isClosed() ? $formatter->format($businessHours->nextOpen($now)) : null,
-            'closingTime' => $businessHours->isOpen() ? $formatter->format($businessHours->nextClose($now)) : null,
+            'openingTime' => $businessHours->isClosed() ? safeFormatIntl($businessHours->nextOpen($now), config('settings.datetime_workinghours_display_format_new')) : null,
+            'closingTime' => $businessHours->isOpen() ? safeFormatIntl($businessHours->nextClose($now), config('settings.datetime_workinghours_display_format_new')) : null,
             'usernames' => $usernames,
             'canDoOrdering' => $canDoOrdering,
             'currentLanguage' => $currentEnvLanguage,
