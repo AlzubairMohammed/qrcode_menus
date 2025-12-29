@@ -25,4 +25,18 @@ trait Fields
 
         return $fieldsToRender;
     }
+
+    public function encodeItem($data)
+    {
+        if (is_array($data)) {
+            $encoded = [];
+            foreach ($data as $key => $value) {
+                $encoded[$key] = strip_tags($value);
+            }
+
+            return $encoded;
+        }
+
+        return strip_tags($data);
+    }
 }

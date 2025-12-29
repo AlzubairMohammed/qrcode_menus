@@ -17,6 +17,8 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class ItemsController extends Controller
 {
+    use \App\Traits\Fields;
+
     private $imagePath = 'uploads/restorants/';
 
     public function reorderCategories(Categories $up): RedirectResponse
@@ -432,14 +434,4 @@ class ItemsController extends Controller
     }
 
 
-    public function encodeItem($data) {
-        if(is_array($data)){
-             $encoded = [];
-             foreach($data as $key=>$value){
-                 $encoded[$key]=strip_tags($value);
-             }
-             return $encoded;
-        }
-        return strip_tags($data);
-    }
 }

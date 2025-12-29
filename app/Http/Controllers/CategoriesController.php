@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 class CategoriesController extends Controller
 {
+    use \App\Traits\Fields;
     /**
      * Display a listing of the resource.
      *
@@ -87,19 +88,6 @@ class CategoriesController extends Controller
         return redirect()->back()->withStatus(__('Category name successfully updated.'));
     }
 
-    private function encodeItem($data)
-    {
-        if (is_array($data)) {
-            $encoded = [];
-            foreach ($data as $key => $value) {
-                $encoded[$key] = strip_tags($value);
-            }
-
-            return $encoded;
-        }
-
-        return strip_tags($data);
-    }
 
     /**
      * Remove the specified resource from storage.
