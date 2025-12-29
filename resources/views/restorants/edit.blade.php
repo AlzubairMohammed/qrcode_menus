@@ -51,9 +51,7 @@
                             <div class="row align-items-center">
                                 <div class="col-8">
                                     <h3 class="mb-0">{{ __('Restaurant Management') }}</h3>
-                                    @if (config('settings.wildcard_domain_ready'))
                                     <span class="blockquote-footer">{{ $restorant->getLinkAttribute() }}</span>
-                                    @endif
                                 </div>
                                 <div class="col-4 text-right">
                                     @if(auth()->user()->hasRole('admin'))
