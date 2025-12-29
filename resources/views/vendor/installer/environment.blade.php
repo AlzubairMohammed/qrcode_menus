@@ -16,7 +16,7 @@
     </p>
     <div class="buttons">
         
-        <a href="{{ route('LaravelInstaller::environmentClassic') }}" class="button button-classic">
+        <a href="{{ route('install.database') }}" class="button button-classic">
             <i class="fa fa-code fa-fw" aria-hidden="true"></i> {{ trans('installer_messages.environment.menu.classic-button') }}
         </a>
     </div>

@@ -162,7 +162,12 @@ class FrontEndController extends Controller
         try {
             \DB::connection()->getPdo();
         } catch (\Exception $e) {
-            return redirect()->route('LaravelInstaller::welcome');
+            if (! file_exists(storage_path('installed'))) {
+                return redirect()->route('install.index');
+            } else {
+                // In production, if already installed, show error instead of redirecting to installer
+                return response()->view('errors.500', ['error' => 'Database connection failed. Please check your configuration.'], 500);
+            }
         }
 
         //SITE SWITCHER
