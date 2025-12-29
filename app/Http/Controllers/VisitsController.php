@@ -276,7 +276,7 @@ class VisitsController extends Controller
 
         return view('general.form_front', ['setup' => [
             'inrow' => true,
-            'action_link' => route('vendor', ['alias' => $restaurant->subdomain]),
+            'action_link' => route('vendor', ['alias' => $restaurant->alias]),
             'action_name' => __('crud.back'),
             'title' => __('crud.new_item', ['item' => __($this->title)]),
             'iscontent' => true,
@@ -299,6 +299,6 @@ class VisitsController extends Controller
         ]);
         $item->save();
 
-        return redirect()->route('vendor', ['alias' => $restaurant->subdomain])->withStatus(__('crud.item_has_been_added', ['item' => __($this->title)]));
+        return redirect()->route('vendor', ['alias' => $restaurant->alias])->withStatus(__('crud.item_has_been_added', ['item' => __($this->title)]));
     }
 }

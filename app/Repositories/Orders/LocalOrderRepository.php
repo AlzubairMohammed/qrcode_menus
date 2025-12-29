@@ -99,7 +99,7 @@ class LocalOrderRepository extends BaseOrderRepository implements OrderTypeInter
                 } else {
                     //Updated order - redirect to restaurant page
                     return redirect()
-                        ->route('vendor', ['alias' => $this->vendor->subdomain])
+                        ->route('vendor', ['alias' => $this->vendor->alias])
                         ->withCookie(cookie('orders', $this->listOfOrders, 360))
                         ->withStatus(__('Order updated.').' ID #'.$this->order->id_formated);
                 }

@@ -880,7 +880,7 @@ class RestorantController extends Controller
             //$url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] ? 'https://' : 'http://').auth()->user()->restorant->subdomain.'.'.str_replace('www.', '', $_SERVER['HTTP_HOST']);
             $url = str_replace('://', '://'.auth()->user()->restorant->subdomain.'.', config('app.url', ''));
         } else {
-            $url = route('vendor', auth()->user()->restorant->subdomain);
+            $url = route('vendor', auth()->user()->restorant->alias);
         }
 
         return view('restorants.share', ['url' => auth()->user()->restorant->getLinkAttribute(), 'name' => auth()->user()->restorant->name]);
@@ -895,7 +895,7 @@ class RestorantController extends Controller
         } elseif (strlen(auth()->user()->restorant->getConfig('domain')) > 3) {
             $vendorURL = 'https://'.explode(' ', auth()->user()->restorant->getConfig('domain'))[0];
         } else {
-            $vendorURL = route('vendor', auth()->user()->restorant->subdomain);
+            $vendorURL = route('vendor', auth()->user()->restorant->alias);
         }
         $vendorURL = auth()->user()->restorant->getLinkAttribute();
 

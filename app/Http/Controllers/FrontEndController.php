@@ -251,7 +251,11 @@ class FrontEndController extends Controller
     {
         $subDomain = $this->getSubDomain();
         if ($subDomain) {
-            $restorant = Restorant::whereRaw('REPLACE(subdomain, "-", "") = ?', [str_replace('-', '', $subDomain)])->get();
+            if (is_numeric($subDomain)) {
+                $restorant = Restorant::where('id', $subDomain)->get();
+            } else {
+                $restorant = Restorant::whereRaw('REPLACE(subdomain, "-", "") = ?', [str_replace('-', '', $subDomain)])->get();
+            }
             if (count($restorant) != 1) {
                 //When Subdomain mode is disabled, show the error
                 if (! config('settings.wildcard_domain_ready')) {
@@ -1058,7 +1062,11 @@ class FrontEndController extends Controller
         if ($subDomain && $alias !== $subDomain) {
             return redirect()->route('restorant', $subDomain);
         }
-        $restorant = Restorant::whereRaw('REPLACE(subdomain, "-", "") = ?', [str_replace('-', '', $alias)])->first();
+        if (is_numeric($alias)) {
+            $restorant = Restorant::where('id', $alias)->first();
+        } else {
+            $restorant = Restorant::whereRaw('REPLACE(subdomain, "-", "") = ?', [str_replace('-', '', $alias)])->first();
+        }
 
         if (config('app.isloyalty', false) && $restorant) {
             return $this->loyaltyPlatform($restorant);

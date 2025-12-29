@@ -31,7 +31,7 @@ class PaymentController extends Controller
 
             return redirect()->route('order.success', ['order' => $order]);
         } else {
-            return redirect()->route('vendor', $order->restorant->subdomain)->withMesswithErrorage($request->message)->withInput();
+            return redirect()->route('vendor', $order->restorant->alias)->withMesswithErrorage($request->message)->withInput();
         }
     }
 

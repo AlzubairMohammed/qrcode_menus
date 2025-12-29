@@ -979,7 +979,7 @@ class OrderController extends Controller
         foreach ($orders as $key => $order) {
             //Change currency
             $lastOrder = $order;
-            $backUrl = route('vendor', $order->restorant->subdomain);
+            $backUrl = route('vendor', $order->restorant->alias);
         }
 
         $showWhatsApp = config('settings.whatsapp_ordering_enabled');

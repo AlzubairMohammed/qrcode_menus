@@ -32,7 +32,7 @@
                         @if (config('settings.wildcard_domain_ready'))
                             <a href="{{ $order->restorant->getLinkAttribute() }}" class="btn btn-outline-primary btn-sm">{{ __('Go back to restaurant') }}</a>
                         @else
-                            <a href="{{ route('vendor',$order->restorant->subdomain) }}" class="btn btn-outline-primary btn-sm">{{ __('Go back to restaurant') }}</a>
+                            <a href="{{ route('vendor',$order->restorant->alias) }}" class="btn btn-outline-primary btn-sm">{{ __('Go back to restaurant') }}</a>
                         @endif
 
                        

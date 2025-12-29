@@ -47,7 +47,7 @@ class Restorant extends \App\Models\TranslateAwareModel
 
     public function getAliasAttribute()
     {
-        return $this->subdomain;
+        return $this->id;
     }
 
     public function getPlanAttribute()
@@ -166,13 +166,13 @@ class Restorant extends \App\Models\TranslateAwareModel
             return 'https://'.explode(' ', $this->getConfig('domain'))[0];
         } elseif (config('settings.wildcard_domain_ready')) {
             //As subdomain
-            return str_replace('://', '://'.$this->subdomain.'.', config('app.url', ''));
+            return str_replace('://', '://'.$this->id.'.', config('app.url', ''));
         } elseif (config('settings.show_clear_link', false)) {
             //As subdomain
-            return str_replace('//'.$this->subdomain, '/'.$this->subdomain, config('app.url', '').'/'.$this->subdomain);
+            return str_replace('//'.$this->id, '/'.$this->id, config('app.url', '').'/'.$this->id);
         } else {
             //As link
-            return route('vendor', $this->subdomain);
+            return route('vendor', $this->id);
         }
     }
 
