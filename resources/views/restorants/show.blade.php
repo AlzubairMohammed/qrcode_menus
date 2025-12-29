@@ -268,11 +268,11 @@
                 <!--<img src="{{ asset('images') }}/icons/flags/{{ strtoupper(config('app.locale'))}}.png" /> --> {{ $currentLanguage }}
             </a>
             <ul class="dropdown-menu" aria-labelledby="">
-                @foreach ($restorant->localmenus()->get() as $language)
-                    @if ($language->language!=config('app.locale'))
+                @foreach ($availableLanguages as $langCode => $langName)
+                    @if ($langCode != config('app.locale'))
                         <li>
-                            <a class="dropdown-item" href="?lang={{ $language->language }}">
-                                <!-- <img src="{{ asset('images') }}/icons/flags/{{ strtoupper($language->language)}}.png" /> --> {{$language->languageName}}
+                            <a class="dropdown-item" href="?lang={{ $langCode }}">
+                                {{ $langName }}
                             </a>
                         </li>
                     @endif
@@ -290,11 +290,11 @@
                 <span class="nav-link-inner--text">{{ $currentLanguage }}</span>
               </a>
             <ul class="dropdown-menu" aria-labelledby="">
-                @foreach ($restorant->localmenus()->get() as $language)
-                    @if ($language->language!=config('app.locale'))
+                @foreach ($availableLanguages as $langCode => $langName)
+                    @if ($langCode != config('app.locale'))
                         <li>
-                            <a class="dropdown-item" href="?lang={{ $language->language }}">
-                               <!-- <img src="{{ asset('images') }}/icons/flags/{{ strtoupper($language->language)}}.png" /> ---> {{$language->languageName}}
+                            <a class="dropdown-item" href="?lang={{ $langCode }}">
+                                {{ $langName }}
                             </a>
                         </li>
                     @endif

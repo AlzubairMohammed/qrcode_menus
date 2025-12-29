@@ -1179,6 +1179,15 @@ class FrontEndController extends Controller
 
             session(['last_visited_restaurant_alias' => $restorant->alias]);
 
+            $availableLanguagesENV = config('settings.front_languages');
+            $exploded = explode(',', $availableLanguagesENV);
+            $availableLanguages = [];
+            for ($i = 0; $i < count($exploded); $i += 2) {
+                if (isset($exploded[$i + 1])) {
+                    $availableLanguages[$exploded[$i]] = $exploded[$i + 1];
+                }
+            }
+
             $viewData = [
                 'wh' => $wh,
                 'allergens' => in_array('allergens', config('global.modules', [])) ? Allergens::where('post_type', 'allergen')->get() : [],
@@ -1191,10 +1200,11 @@ class FrontEndController extends Controller
                 'usernames' => $usernames,
                 'canDoOrdering' => $canDoOrdering,
                 'currentLanguage' => $currentEnvLanguage,
+                'availableLanguages' => $availableLanguages,
                 'showGoogleTranslate' => $doWeHaveGoogleTranslateApp,
                 'showAllGTLanguages' => $restorant->getConfig('gt_all', true),
                 'showGTLanguages' => $restorant->getConfig('gt_list', ''),
-                'showLanguagesSelector' => env('ENABLE_MILTILANGUAGE_MENUS', false) && $restorant->localmenus()->count() > 1,
+                'showLanguagesSelector' => config('settings.enable_miltilanguage_menus') && count($availableLanguages) > 1,
                 'hasGuestOrders' => count($previousOrderArray) > 0,
                 'fields' => [['class' => 'col-12', 'classselect' => 'noselecttwo', 'ftype' => 'select', 'name' => 'Table', 'id' => 'table_id', 'placeholder' => 'Select table', 'data' => $tablesData, 'required' => true]],
             ];

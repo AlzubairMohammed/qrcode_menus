@@ -383,7 +383,7 @@ class RestorantController extends Controller
         $restaurant->name = strip_tags($request->name);
     }
 
-    $thereIsRestaurantAddressChange = $restaurant->address.'' != $request->address.'';
+    $thereIsRestaurantAddressChange = json_encode($restaurant->address) != json_encode($request->address);
 
     if (is_array($request->address)) {
         $restaurant->address = $this->encodeItem($request->address);
