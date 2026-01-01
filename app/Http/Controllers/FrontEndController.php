@@ -1024,7 +1024,16 @@ class FrontEndController extends Controller
         //Change currency
         ConfChanger::switchCurrency($company);
 
-        $currentEnvLanguage = isset(config('config.env')[2]['fields'][0]['data'][config('app.locale')]) ? config('config.env')[2]['fields'][0]['data'][config('app.locale')] : 'UNKNOWN';
+        $availableLanguagesENV = config('settings.front_languages');
+        $exploded = explode(',', $availableLanguagesENV);
+        $availableLanguages = [];
+        for ($i = 0; $i < count($exploded); $i += 2) {
+            if (isset($exploded[$i + 1])) {
+                $availableLanguages[$exploded[$i]] = $exploded[$i + 1];
+            }
+        }
+
+        $currentEnvLanguage = isset($availableLanguages[config('app.locale')]) ? $availableLanguages[config('app.locale')] : 'UNKNOWN';
 
         $company->increment('views');
 
@@ -1146,7 +1155,16 @@ class FrontEndController extends Controller
             //Change currency
             ConfChanger::switchCurrency($restorant);
 
-            $currentEnvLanguage = isset(config('config.env')[2]['fields'][0]['data'][config('app.locale')]) ? config('config.env')[2]['fields'][0]['data'][config('app.locale')] : 'UNKNOWN';
+            $availableLanguagesENV = config('settings.front_languages');
+            $exploded = explode(',', $availableLanguagesENV);
+            $availableLanguages = [];
+            for ($i = 0; $i < count($exploded); $i += 2) {
+                if (isset($exploded[$i + 1])) {
+                    $availableLanguages[$exploded[$i]] = $exploded[$i + 1];
+                }
+            }
+
+            $currentEnvLanguage = isset($availableLanguages[config('app.locale')]) ? $availableLanguages[config('app.locale')] : 'UNKNOWN';
 
             //dd($restorant->categories[1]->items[0]->extras);
             // dd(Categories::where('restorant_id',$restorant->id)->ordered()->get());
@@ -1179,14 +1197,7 @@ class FrontEndController extends Controller
 
             session(['last_visited_restaurant_alias' => $restorant->alias]);
 
-            $availableLanguagesENV = config('settings.front_languages');
-            $exploded = explode(',', $availableLanguagesENV);
-            $availableLanguages = [];
-            for ($i = 0; $i < count($exploded); $i += 2) {
-                if (isset($exploded[$i + 1])) {
-                    $availableLanguages[$exploded[$i]] = $exploded[$i + 1];
-                }
-            }
+
 
             $viewData = [
                 'wh' => $wh,

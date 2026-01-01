@@ -151,7 +151,15 @@ class SettingsController extends Controller
 
             //Create the local model for all restaurants
             $allRestaurants = Restorant::where('id', '>', 0)->get();
-            $currentEnvLanguage = isset(config('config.env')[2]['fields'][0]['data'][$locale]) ? config('config.env')[2]['fields'][0]['data'][$locale] : 'UNKNOWN';
+            $availableLanguagesENV = config('settings.front_languages');
+            $exploded = explode(',', $availableLanguagesENV);
+            $availableLanguages = [];
+            for ($i = 0; $i < count($exploded); $i += 2) {
+                if (isset($exploded[$i + 1])) {
+                    $availableLanguages[$exploded[$i]] = $exploded[$i + 1];
+                }
+            }
+            $currentEnvLanguage = isset($availableLanguages[$locale]) ? $availableLanguages[$locale] : 'UNKNOWN';
             foreach ($allRestaurants as $key => $restaurant) {
                 $localMenu = new LocalMenu([
                     'restaurant_id' => $restaurant->id,
@@ -590,7 +598,7 @@ class SettingsController extends Controller
 
         $sections = ['Features' => 'feature', 'Testimonials' => 'testimonial', 'Processes' => 'process', 'FAQs' => 'faq', 'Blog links' => 'blog'];
 
-        $currentEnvLanguage = isset(config('config.env')[2]['fields'][0]['data'][config('app.locale')]) ? config('config.env')[2]['fields'][0]['data'][config('app.locale')] : 'UNKNOWN';
+        $currentEnvLanguage = isset($availableLanguages[config('app.locale')]) ? $availableLanguages[config('app.locale')] : 'UNKNOWN';
 
         return view('landing.index', [
             'sections' => $sections,

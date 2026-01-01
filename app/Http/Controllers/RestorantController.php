@@ -940,7 +940,16 @@ class RestorantController extends Controller
         $newLocale = $request->locale;
         $currentLocale = config('app.locale');
 
-        $newEnvLanguage = isset(config('config.env')[2]['fields'][0]['data'][$newLocale]) ? config('config.env')[2]['fields'][0]['data'][$newLocale] : 'UNKNOWN';
+        $availableLanguagesENV = config('settings.front_languages');
+        $exploded = explode(',', $availableLanguagesENV);
+        $availableLanguages = [];
+        for ($i = 0; $i < count($exploded); $i += 2) {
+            if (isset($exploded[$i + 1])) {
+                $availableLanguages[$exploded[$i]] = $exploded[$i + 1];
+            }
+        }
+
+        $newEnvLanguage = isset($availableLanguages[$newLocale]) ? $availableLanguages[$newLocale] : 'UNKNOWN';
 
         //Create new language
         $localMenu = new LocalMenu([

@@ -355,11 +355,22 @@ class CartController extends Controller
         //Change currency
         ConfChanger::switchCurrency($restorant);
 
-        $currentEnvLanguage = isset(config('config.env')[2]['fields'][0]['data'][config('app.locale')]) ? config('config.env')[2]['fields'][0]['data'][config('app.locale')] : 'UNKNOWN';
+        $availableLanguagesENV = config('settings.front_languages');
+        $exploded = explode(',', $availableLanguagesENV);
+        $availableLanguages = [];
+        for ($i = 0; $i < count($exploded); $i += 2) {
+            if (isset($exploded[$i + 1])) {
+                $availableLanguages[$exploded[$i]] = $exploded[$i + 1];
+            }
+        }
+
+        $currentEnvLanguage = isset($availableLanguages[config('app.locale')]) ? $availableLanguages[config('app.locale')] : 'UNKNOWN';
 
         $businessHours = $restorant->getBusinessHours();
         $now = new \DateTime('now');
 
+        return [
+            'restorant' => $restorant,
             'openingTime' => $businessHours->isClosed() ? safeFormatIntl($businessHours->nextOpen($now), config('settings.datetime_workinghours_display_format_new')) : null,
             'closingTime' => $businessHours->isOpen() ? safeFormatIntl($businessHours->nextClose($now), config('settings.datetime_workinghours_display_format_new')) : null,
             'usernames' => $usernames,
