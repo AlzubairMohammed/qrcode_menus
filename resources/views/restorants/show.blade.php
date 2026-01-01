@@ -540,12 +540,12 @@
         <!-- Sticky Navigation -->
         <nav class="tabbable sticky" style="top: {{ config('app.isqrsaas') ? 64 : 0 }}px;">
             <ul class="nav nav-pills mb-2 align-items-center">
-                <li class="nav-item nav-item-category" id="cat_all">
+                <li class="nav-item nav-item-category" id="cat_all" data-category-id="all">
                     <a class="nav-link mb-sm-3 mb-md-0 active" data-toggle="tab" role="tab" href="">{{ __('All categories') }}</a>
                 </li>
                 @foreach ( $restorant->categories as $key => $category)
                     @if(!$category->aitems->isEmpty())
-                        <li class="nav-item nav-item-category" id="{{ 'cat_'.clean(str_replace(' ', '', strtolower($category->name)).strval($key)) }}">
+                        <li class="nav-item nav-item-category" id="{{ 'cat_'.clean(str_replace(' ', '', strtolower($category->name)).strval($key)) }}" data-category-id="{{ clean(str_replace(' ', '', strtolower($category->name)).strval($key)) }}">
                             <a class="nav-link mb-sm-3 mb-md-0" data-toggle="tab" role="tab" id="{{ 'nav_'.clean(str_replace(' ', '', strtolower($category->name)).strval($key)) }}" href="#{{ clean(str_replace(' ', '', strtolower($category->name)).strval($key)) }}">{{ $category->name }}</a>
                         </li>
                     @endif
@@ -557,11 +557,11 @@
         @if(!$restorant->categories->isEmpty())
         @foreach ( $restorant->categories as $key => $category)
             @if(!$category->aitems->isEmpty())
-            <div id="{{ clean(str_replace(' ', '', strtolower($category->name)).strval($key)) }}" class="{{ clean(str_replace(' ', '', strtolower($category->name)).strval($key)) }}">
+            <div id="{{ clean(str_replace(' ', '', strtolower($category->name)).strval($key)) }}" class="category-content {{ clean(str_replace(' ', '', strtolower($category->name)).strval($key)) }}" data-content-id="{{ clean(str_replace(' ', '', strtolower($category->name)).strval($key)) }}">
                 <h2 class="menu-category-title">{{ $category->name }}</h2>
             </div>
             @endif
-            <div class="row {{ clean(str_replace(' ', '', strtolower($category->name)).strval($key)) }}">
+            <div class="row category-content {{ clean(str_replace(' ', '', strtolower($category->name)).strval($key)) }}" data-content-id="{{ clean(str_replace(' ', '', strtolower($category->name)).strval($key)) }}">
                 @foreach ($category->aitems as $item)
                     <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-4">
                         <div class="strip">

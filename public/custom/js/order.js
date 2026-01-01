@@ -432,17 +432,16 @@ window.onload = function () {
 
 
 $(".nav-item-category").on('click', function () {
-    $.each(categories, function (index, value) {
-        $("." + value).show();
-    });
+    var categoryId = $(this).attr("data-category-id");
 
-    var id = $(this).attr("id");
-    var category_id = id ? id.substr(id.indexOf("_") + 1) : null;
+    // 1. Show all items initially
+    $('.category-content').show();
 
-    if (category_id && category_id != "all") {
-        $.each(categories, function (index, value) {
-            if (value != category_id) {
-                $("." + value).hide();
+    // 2. If it is not "all", hide everything else
+    if (categoryId && categoryId !== "all") {
+        $('.category-content').each(function () {
+            if ($(this).attr('data-content-id') !== categoryId) {
+                $(this).hide();
             }
         });
     }
