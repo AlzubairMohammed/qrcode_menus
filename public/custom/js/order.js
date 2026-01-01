@@ -439,7 +439,7 @@ $(".nav-item-category").on('click', function () {
     var id = $(this).attr("id");
     var category_id = id ? id.substr(id.indexOf("_") + 1) : null;
 
-    if (category_id) {
+    if (category_id && category_id != "all") {
         $.each(categories, function (index, value) {
             if (value != category_id) {
                 $("." + value).hide();

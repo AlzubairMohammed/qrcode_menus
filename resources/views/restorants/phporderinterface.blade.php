@@ -6,11 +6,9 @@
     $items=[];
     $categories = [];
     foreach ($restorant->categories as $key => $category) {
-
         array_push($categories, clean(str_replace(' ', '', strtolower($category->name)).strval($key)));
 
-        foreach ($category->items as $key => $item) {
-
+        foreach ($category->items as $itemKey => $item) {
             $formatedExtras=$item->extras;
 
             foreach ($formatedExtras as &$element) {
