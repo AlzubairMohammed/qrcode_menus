@@ -540,7 +540,7 @@
         <!-- Sticky Navigation -->
         <nav class="tabbable sticky" style="top: {{ config('app.isqrsaas') ? 64 : 0 }}px;">
             <ul class="nav nav-pills mb-2 align-items-center">
-                <li class="nav-item nav-item-category">
+                <li class="nav-item nav-item-category" id="cat_all">
                     <a class="nav-link mb-sm-3 mb-md-0 active" data-toggle="tab" role="tab" href="">{{ __('All categories') }}</a>
                 </li>
                 @foreach ( $restorant->categories as $key => $category)
